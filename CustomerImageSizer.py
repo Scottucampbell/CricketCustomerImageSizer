@@ -27,9 +27,9 @@ if __name__ == "__main__":
     dimeDiameter.set("0.705")
     label.place(relx=.85, rely=.25)
 
-    cricLength = StringVar()
-    label = Label(root, textvariable=cricLength)
-    cricLength.set("0")
+    cricLengthvar = StringVar()
+    label = Label(root, textvariable=cricLengthvar)
+    cricLengthvar.set("0")
     label.place(relx=.85, rely=.40)
 
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
             cricLength = (pixelcricLength / pixeldimeLength) * .705
 
-            cricLength.set(str(cricLength))
+            cricLengthvar.set(str(float('%.4g' % cricLength)))
             print (cricLength)
 
 
