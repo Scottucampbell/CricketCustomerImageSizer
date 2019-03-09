@@ -11,10 +11,8 @@ if __name__ == "__main__":
     root = Tk()
 
     #setting up a tkinter canvas with scrollbars
-    frame = Frame(root, bd=2, relief=SUNKEN)
-    frame.grid_rowconfigure(0, weight=1)
-    frame.grid_columnconfigure(0, weight=1)
-    canvas = Canvas(frame, bd=0)
+    frame = Frame(root, relief=SUNKEN)
+    canvas = Canvas(frame,  width=800, height=450, bd=0)
     canvas.grid(row=0, column=0, sticky=N+S+E+W)
     frame.pack(fill=BOTH,expand=1)
     label = Label(root, text="Dime Size (in) :")
