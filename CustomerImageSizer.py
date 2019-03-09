@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 from PIL import ImageTk
 from PIL import Image
+import math
 
 
 i = 0
@@ -9,6 +10,7 @@ pointx = [0,0,0,0]
 pointy = [0,0,0,0]
 if __name__ == "__main__":
     root = Tk()
+    root.title("Cricket Sizer")
 
     #setting up a tkinter canvas with scrollbars
     frame = Frame(root, relief=SUNKEN)
@@ -22,10 +24,12 @@ if __name__ == "__main__":
 
     dimeDiameter = StringVar()
     label = Label(root, textvariable=dimeDiameter)
-    dimeDiameter.set("0.707")
-
+    dimeDiameter.set("0.705")
     label.place(relx=.85, rely=.25)
-    label = Label(root, textvariable="hello")
+
+    cricLength = StringVar()
+    label = Label(root, textvariable=cricLength)
+    cricLength.set("0")
     label.place(relx=.85, rely=.40)
 
 
@@ -60,6 +64,20 @@ if __name__ == "__main__":
             canvas.create_line(pointx[0], pointy[0], pointx[1], pointy[1], fill="red")
         if i > 2:
             canvas.create_line(pointx[2], pointy[2], pointx[3], pointy[3], fill="red")
+            #size Calcs
+            xDifDime = abs(pointx[1]-pointx[0])
+            yDifDime = abs(pointy[1] - pointy[0])
+            pixeldimeLength = math.sqrt(xDifDime*xDifDime + yDifDime*yDifDime)
+
+            xDifCric = abs(pointx[3] - pointx[2])
+            yDifCric = abs(pointy[3] - pointy[2])
+            pixelcricLength = math.sqrt(xDifCric * xDifCric + yDifCric * yDifCric)
+
+            cricLength = (pixelcricLength / pixeldimeLength) * .705
+
+            cricLength.set(str(cricLength))
+            print (cricLength)
+
 
         i = i+1
 
