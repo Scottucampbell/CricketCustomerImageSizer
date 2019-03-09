@@ -27,7 +27,9 @@ if __name__ == "__main__":
     File = filedialog.askopenfilename(initialdir="/", title="Select file",
                                           filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
     load = Image.open(File)
-    load = load.resize((200, 200), Image.ANTIALIAS)
+    width, heigth = load.size
+    wtohRatio = width/heigth
+    load = load.resize((400, int(400/wtohRatio)), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(load)
     canvas.create_image(50,50,image=img,anchor="nw")
     canvas.config(scrollregion=canvas.bbox(ALL))
