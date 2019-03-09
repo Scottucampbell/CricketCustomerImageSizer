@@ -3,6 +3,7 @@ from tkinter import filedialog
 from PIL import ImageTk
 from PIL import Image
 
+
 i = 0
 pointx = [0,0,0,0]
 pointy = [0,0,0,0]
@@ -13,11 +14,23 @@ if __name__ == "__main__":
     frame = Frame(root, bd=2, relief=SUNKEN)
     frame.grid_rowconfigure(0, weight=1)
     frame.grid_columnconfigure(0, weight=1)
-
     canvas = Canvas(frame, bd=0)
     canvas.grid(row=0, column=0, sticky=N+S+E+W)
-
     frame.pack(fill=BOTH,expand=1)
+    label = Label(root, text="Dime Size (in) :")
+    label.place(relx = .7, rely = .25)
+    label = Label(root, text="Cricket Size (in) :")
+    label.place(relx=.7, rely=.40)
+
+    dimeDiameter = StringVar()
+    label = Label(root, textvariable=dimeDiameter)
+    dimeDiameter.set("0.707")
+
+    label.place(relx=.85, rely=.25)
+    label = Label(root, textvariable="hello")
+    label.place(relx=.85, rely=.40)
+
+
 
     #adding the image
     File = filedialog.askopenfilename(initialdir="/", title="Select file",
