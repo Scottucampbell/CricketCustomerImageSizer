@@ -13,14 +13,10 @@ if __name__ == "__main__":
     frame = Frame(root, bd=2, relief=SUNKEN)
     frame.grid_rowconfigure(0, weight=1)
     frame.grid_columnconfigure(0, weight=1)
-    xscroll = Scrollbar(frame, orient=HORIZONTAL)
-    xscroll.grid(row=1, column=0, sticky=E+W)
-    yscroll = Scrollbar(frame)
-    yscroll.grid(row=0, column=1, sticky=N+S)
-    canvas = Canvas(frame, bd=0, xscrollcommand=xscroll.set, yscrollcommand=yscroll.set)
+
+    canvas = Canvas(frame, bd=0)
     canvas.grid(row=0, column=0, sticky=N+S+E+W)
-    xscroll.config(command=canvas.xview)
-    yscroll.config(command=canvas.yview)
+
     frame.pack(fill=BOTH,expand=1)
 
     #adding the image
@@ -29,10 +25,12 @@ if __name__ == "__main__":
     load = Image.open(File)
     width, heigth = load.size
     wtohRatio = width/heigth
-    load = load.resize((400, int(400/wtohRatio)), Image.ANTIALIAS)
+    print (width)
+    print (heigth)
+    load = load.resize((round(width/10), round(heigth/10)), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(load)
     canvas.create_image(50,50,image=img,anchor="nw")
-    canvas.config(scrollregion=canvas.bbox(ALL))
+
 
     #function to be called when mouse is clicked
     def printcoords(event):
